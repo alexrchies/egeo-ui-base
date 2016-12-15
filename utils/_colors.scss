@@ -57,7 +57,7 @@
    }
 }
 
-@function egeo-get-color($color, $rgb: false, $alpha: 0) {
+@function egeo-get-color($color, $rgb: false, $alpha: 1) {
    $result: #000;
 
    @if ($rgb) {
@@ -88,6 +88,12 @@
                @return -1;
             }
          }
+      }
+   }
+
+   @if ($alpha > 1) {
+      @if egeo-log('@egeo-get-color::Alpha channel cannot be more than 1. Value::' + $alpha, $egeo-log-error) {
+         @return -1;
       }
    }
 
